@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft 乄 咖咯德苏林</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+        }
+        #topleft_infos {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ccff8a;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-right: 20px;
+        }
+        #sidebar {
+            position: fixed;
+            top: 150px;
+            left: 20px;
+            background-color: #ccff8a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 200px;
+            height: 900px;
+            color: #008c31;
+        }
+        button {
+            cursor: pointer;
+            margin: 0 auto;
+        }
+        #sidebar button {
+            background-color: #99ff00;
+            border-radius: 5px;
+            color: #008c31;
+            border-color: #ccff8a;
+            border-width: 0px;
+            border-style: solid;
+            font-size: 20px;
+            width: 180px;
+            text-align: center;
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+        #content {
+            position: fixed;
+            top: 150px;
+            left: 230px;
+            padding: 20px;
+            margin-left: 40px;
+            margin-bottom: 40px;
+            background-color: #ccff8a;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 1710px;
+            height: 900px;
+            color: #008c31;
+            overflow-y: auto;
+        }
+        #content button {
+            background-color: #99ff00;
+            border-radius: 5px;
+            color: #008c31;
+            border-color: #ccff8a;
+            border-width: 0px;
+            border-style: solid;
+            margin: 0;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #008c31;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 15px;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        function ToggleFolder(folderId) {
+            var folder = document.getElementById(folderId)
+        }
+        window.onpageshow = function() {
+            updateTime();
+            setInterval(updateTime, 100);
+        }
+        function updateTime() {
+            document.getElementById("time").textContent = "现在是：" + new Date().toLocaleString();
+        }
+        function openWechatChannel() {
+            window.open("wechannel.html", "_blank");
+        }
+        function openBilibiliChannel() {
+            window.open("https://space.bilibili.com/3546942499981867", "_blank");
+        }
+        function openGithub() {
+            window.open("https://github.com/Caldson", "_blank");
+        }
+        function txtpro() {
+            window.open("https://caldson.github.io/txtpro/index.html", "_blank");
+        }
+        function xos() {
+            window.open("https://github.com/Caldson/XOS", "_blank");
+        }
+        function sendEmail() {
+            email = prompt("请输入您的邮箱：");
+            if (email) {
+                window.location.href = `mailto:minecraft@caldson.com?subject=%E6%9D%A5%E8%87%AAhttps%3A//caldson.github.io&from=${email}`
+            }
+        }
+        function closeTips() {
+            document.getElementById("tips").innerText = "";
+            document.getElementById("tips_button").style.display = "none";
+            document.getElementById("tips").style.display = "none";
+        }
+        let tips_left = 5;
+        function randomtip() {
+            if (tips_left > 0) {
+                randomtips = ["来财", "胜利", "努力", "争气", "勤奋", "聪明", "好运", "财富", "热血", "开心", "成功", "高兴", "快乐", "上进", "阳光", "自信", "坚强", "勇敢", "智慧", "善良", "健康", "幸福", "美好", "希望", "活力", "拼搏", "奋斗", "坚持", "乐观", "进取", "创新", "团结", "友善", "诚信", "担当", "责任", "感恩", "温暖", "光明", "卓越", "辉煌"]
+                random_tip = randomtips[Math.floor(Math.random() * randomtips.length)]
+                tips_left = tips_left - 1;
+                if (tips_left == 0) {
+                    document.getElementById("tips_button").innerText = "关闭上上签";
+                    document.getElementById("tips").innerText = `上上签（最后一次）：${random_tip}`;
+                } else {
+                    document.getElementById("tips_button").innerText = `上上签（剩余${tips_left}次机会）`;
+                    document.getElementById("tips").innerText = `上上签：${random_tip}`;
+                }
+            } else {
+                closeTips();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="topleft_infos">
+        <img src="account_photo.jpeg" class="avatar">
+        <h1>Minecraft 乄 咖咯德苏林</h1>
+    </div>
+    <div id="sidebar">
+        <h1>视频账号</h1>
+        <button onclick="openBilibiliChannel()">B站</button>
+        <button onclick="openGithub()">Github</button>
+        <img src="wechannel.jpeg" style="width: 200px; border-radius: 10px;">
+        <h1>联系我们</h1>
+        <img src="wechat.jpeg" style="width: 200px; border-radius: 10px; margin-top: 20px;">
+        <label style="font-size: 10px;">（请备注来自caldson.github.io）</label>
+        <button onclick="sendEmail()">立即发送邮件</button>
+    </div>
+    <div id="content">
+        <label id="time">现在是：初始化中...</label>
+        <br>
+        <button onclick="randomtip()" id="tips_button">上上签（剩余5次机会）</button>
+        <label id="tips">点击按钮！</label>
+    </div>
+    <div class="footer">
+        <label onclick="openGithub()" style="cursor: pointer;">Minecraft 乄 咖咯德苏林</label>
+        <label> | </label>
+        <label onclick="txtpro()" style="cursor: pointer;">TXTPro</label>
+        <label> | </label>
+        <label onclick="xos()" style="cursor: pointer;">XOS</label>
+        <label> | 新功能欢迎投稿 | BUG欢迎联系</label>
+    </div>
+</body>
+</html>
