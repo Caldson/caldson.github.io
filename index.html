@@ -67,6 +67,7 @@
             width: 1710px;
             height: 900px;
             color: #008c31;
+            overflow-x: hidden;
             overflow-y: auto;
         }
         #content button {
@@ -77,6 +78,7 @@
             border-width: 0px;
             border-style: solid;
             margin: 0;
+            cursor: pointer;
         }
         .footer {
             position: fixed;
@@ -89,6 +91,47 @@
             padding: 10px;
             font-size: 15px;
             border-radius: 10px;
+        }
+        #book {
+            background-color: #008c31;
+            width: 1700px;
+            height: 200px;
+            overflow-x: auto;
+            overflow-y: auto;
+            border-radius: 10px;
+        }
+        #book label{
+            display: block;
+            font-size: 15px;
+            color: white;
+        }
+        #book h2{
+            display: block;
+            font-size: 15px;
+            color: white;
+        }
+        #book h1{
+            display: block;
+            font-size: 30px;
+            color: white;
+        }
+        #news {
+            background-color: #008c31;
+            width: 1700px;
+            height: 200px;
+            overflow-x: auto;
+            overflow-y: auto;
+            border-radius: 10px;
+            color: white;
+        }
+        #new button {
+            background-color: #99ff00;
+            border-radius: 5px;
+            color: white;
+            border-color: #ccff8a;
+            border-width: 0px;
+            border-style: solid;
+            margin: 0;
         }
     </style>
     <script>
@@ -163,10 +206,34 @@
         <button onclick="sendEmail()">立即发送邮件</button>
     </div>
     <div id="content">
+        <h1>欢迎访问Minecraft 乄 咖咯德苏林的个人官网！</h1>
+        <h2>小工具</h2>
         <label id="time">现在是：初始化中...</label>
         <br>
         <button onclick="randomtip()" id="tips_button">上上签（剩余5次机会）</button>
         <label id="tips">点击按钮！</label>
+        <h2>野人先生</h2>
+        <div id="book">
+            <h1>《野人先生》</h1>
+            <label>版权说明：未经授权，不得转载。</label>
+            <label>联系作者：minecraftcaldson@outlook.com</label>
+            <label>作者：Minecraft 乄 咖咯德苏林</label>
+            <h2>第一章 第一天</h2>
+            <label>野人先生起床了，这天是周六。早上他起来的有点早，往常的小卖部还没有开门，于是他今天只能去麦当劳买早餐。</label>
+            <label>野人先生正吃着早餐呢。突然一个同事给他打电话，他说："野总，PPT呢？"</label>
+            <label>不幸的是，野人先生缺PPT了？</label>
+            <label>野人先生说："嘿，我发给你了！你仔细翻一下聊天记录？"</label>
+            <label>"没有啊。"</label>
+            <label>"你再找找......"</label>
+            <label>直到电话那边传来"呼！找到了！"野总才放心继续吃早餐。</label>
+            <h2>本书未完全运输之此网站。未完待发</h2>
+        </div>
+        <h2>动态</h2>
+        <br>
+        <div id="news">
+            <h1>动态</h1>
+            <button onclick="window.location.href = 'news20260216-1.html'">2026年2月16日 22:00 - 转自CBMS：2026新年音乐会节目单</button>
+        </div>
     </div>
     <div class="footer">
         <label onclick="openGithub()" style="cursor: pointer;">Minecraft 乄 咖咯德苏林</label>
