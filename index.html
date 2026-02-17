@@ -25,35 +25,9 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             margin-right: 20px;
         }
-        #sidebar {
-            position: fixed;
-            top: 150px;
-            left: 20px;
-            background-color: #ccff8a;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            width: 200px;
-            height: 900px;
-            color: #008c31;
-        }
         button {
             cursor: pointer;
             margin: 0 auto;
-        }
-        #sidebar button {
-            background-color: #99ff00;
-            border-radius: 5px;
-            color: #008c31;
-            border-color: #ccff8a;
-            border-width: 0px;
-            border-style: solid;
-            font-size: 20px;
-            width: 180px;
-            text-align: center;
-            margin: 0 auto;
-            display: block;
-            margin-bottom: 10px;
         }
         #content {
             position: fixed;
@@ -92,84 +66,57 @@
             font-size: 15px;
             border-radius: 10px;
         }
-        #book {
-            background-color: #008c31;
-            width: 1700px;
-            height: 200px;
-            overflow-x: auto;
-            overflow-y: auto;
-            border-radius: 10px;
-        }
-        #book label{
-            display: block;
-            font-size: 15px;
-            color: white;
-        }
-        #book h2{
-            display: block;
-            font-size: 15px;
-            color: white;
-        }
-        #book h1{
-            display: block;
-            font-size: 30px;
-            color: white;
-        }
-        #news {
-            background-color: #008c31;
-            width: 1700px;
-            height: 200px;
-            overflow-x: auto;
-            overflow-y: auto;
-            border-radius: 10px;
-            color: white;
-        }
-        #new button {
-            background-color: #99ff00;
-            border-radius: 5px;
-            color: white;
-            border-color: #ccff8a;
-            border-width: 0px;
-            border-style: solid;
-            margin: 0;
+        #zone .news_id {
+            color: yellow;
+            cursor: pointer;
         }
     </style>
+    <link rel="stylesheet" href="activiting_label.css">
+    <link rel="stylesheet" href="zone.css">
+    <link rel="stylesheet" href="sidebar.css">
     <script>
-        function ToggleFolder(folderId) {
-            var folder = document.getElementById(folderId)
-        }
         window.onpageshow = function() {
+            update_Interval();
+            setInterval(update_Interval, 100);
+        }
+        function update_Interval() {
             updateTime();
-            setInterval(updateTime, 100);
+            getNewsactiviting("news_2026021621:58_20260201-1_activiting", 2026, 2, 16, 22, 0, 2026, 2, 16, 23, 0);
+            getNewsactiviting("news_2026021718:15_20260217-2_activiting", 2026, 2, 17, 18, 0, 2026, 2, 17, 18, 15);
         }
         function updateTime() {
-            document.getElementById("time").textContent = "现在是：" + new Date().toLocaleString();
-        }
-        function openWechatChannel() {
-            window.open("wechannel.html", "_blank");
+            time = new Date().toLocaleString();
+            document.getElementById("time").textContent = "现在是：" + time;
+            console.log(`成功更新时间: ${time}`);
         }
         function openBilibiliChannel() {
             window.open("https://space.bilibili.com/3546942499981867", "_blank");
+            console.log("成功打开B站")
         }
         function openGithub() {
             window.open("https://github.com/Caldson", "_blank");
+            console.log("成功打开Github");
         }
         function txtpro() {
-            window.open("https://caldson.github.io/txtpro/index.html", "_blank");
+            window.open("https://caldson.github.io/txtpro", "_blank");
+            console.log("成功打开Github/TXTPro");
         }
         function xos() {
             window.open("https://github.com/Caldson/XOS", "_blank");
+            console.log("成功打开Github/XOS");
         }
         function sendEmail() {
             email = prompt("请输入您的邮箱：");
             if (email) {
                 window.location.href = `mailto:minecraft@caldson.com?subject=%E6%9D%A5%E8%87%AAhttps%3A//caldson.github.io&from=${email}`
+                console.log(`成功创建邮箱申请：发送来自${email}的申请`);
             }
         }
         function closeTips() {
             document.getElementById("tips").innerText = "";
             document.getElementById("tips_button").style.display = "none";
             document.getElementById("tips").style.display = "none";
+            console.log("成功关闭上上签");
         }
         let tips_left = 5;
         function randomtip() {
@@ -180,15 +127,65 @@
                 if (tips_left == 0) {
                     document.getElementById("tips_button").innerText = "关闭上上签";
                     document.getElementById("tips").innerText = `上上签（最后一次）：${random_tip}`;
+                    console.log(`成功生成上上签（最后一次）：${random_tip}`);
                 } else {
                     document.getElementById("tips_button").innerText = `上上签（剩余${tips_left}次机会）`;
                     document.getElementById("tips").innerText = `上上签：${random_tip}`;
+                    console.log(`成功生成上上签：${random_tip}`);
                 }
             } else {
                 closeTips();
             }
         }
+        function reportNews() {
+            email = prompt("请输入您的邮箱：");
+            if (!email) {
+                return;
+            }
+            news_id = prompt("请输入动态号：");
+            if (!news_id) {
+                return;
+            }
+            if (email && news_id) {
+                const encodedText = encodeURIComponent(news_id);
+                window.location.href = `mailto:minecraft@caldson.com?subject=%E4%B8%BE%E6%8A%A5caldson.github.io%E5%8A%A8%E6%80%81%E5%8F%B7%EF%BC%9A${encodedText}&from=${email}`
+            }
+        }
+        function copyWechatId() {
+            const wechatId = "MinecraftCaldson";
+            const input = document.createElement("input");
+            input.value = wechatId;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand("copy");
+            document.body.removeChild(input);
+            alert("微信号已复制到剪贴板：" + wechatId);
+        }
+        function copyNewsId(news_id) {
+            navigator.clipboard.writeText(news_id);
+            alert("动态号已复制到剪贴板：" + news_id);
+        }
+        function getYear() {
+            return new Date().getFullYear();
+        }
+        function getMonth() {
+            return new Date().getMonth() + 1;
+        }
+        function getDay() {
+            return new Date().getDate();
+        }
+        function getHour() {
+            return new Date().getHours();
+        }
+        function getMinute() {
+            return new Date().getMinutes();
+        }
+        function CDEMC() {
+            window.location.href = "https://caldson.github.io/cdemc/index.html"
+        }
     </script>
+    <script src="black_midi.js"></script>
+    <script src="activiting_label.js"></script>
 </head>
 <body>
     <div id="topleft_infos">
@@ -197,6 +194,7 @@
     </div>
     <div id="sidebar">
         <h1>视频账号</h1>
+        <button onclick="copyWechatId()">复制微信号</button>
         <button onclick="openBilibiliChannel()">B站</button>
         <button onclick="openGithub()">Github</button>
         <img src="wechannel.jpeg" style="width: 200px; border-radius: 10px;">
@@ -212,28 +210,42 @@
         <br>
         <button onclick="randomtip()" id="tips_button">上上签（剩余5次机会）</button>
         <label id="tips">点击按钮！</label>
-        <h2>野人先生</h2>
-        <div id="book">
-            <h1>《野人先生》</h1>
-            <label>版权说明：未经授权，不得转载。</label>
-            <label>联系作者：minecraftcaldson@outlook.com</label>
-            <label>作者：Minecraft 乄 咖咯德苏林</label>
-            <h2>第一章 第一天</h2>
-            <label>野人先生起床了，这天是周六。早上他起来的有点早，往常的小卖部还没有开门，于是他今天只能去麦当劳买早餐。</label>
-            <label>野人先生正吃着早餐呢。突然一个同事给他打电话，他说："野总，PPT呢？"</label>
-            <label>不幸的是，野人先生缺PPT了？</label>
-            <label>野人先生说："嘿，我发给你了！你仔细翻一下聊天记录？"</label>
-            <label>"没有啊。"</label>
-            <label>"你再找找......"</label>
-            <label>直到电话那边传来"呼！找到了！"野总才放心继续吃早餐。</label>
-            <h2>本书未完全运输之此网站。未完待发</h2>
-        </div>
         <h2>动态</h2>
         <br>
-        <div id="news">
-            <h1>动态</h1>
-            <button onclick="window.location.href = 'news20260216-1.html'">2026年2月16日 22:00 - 转自CBMS：2026新年音乐会节目单</button>
+        <div id="zone"> <!--news_YYYYMMDD时时:分分_YYYYMMDD-{今天的第x条动态}-->
+            <div id="news_2026021718:15_20260217-2">
+                <h2>限时活动</h2>
+                <h3>2026年2月17日 18:15发布</h3>
+                <label>现在进入群聊即可获得1个CDEMC的账号和5个MIDI！</label>
+                <br>
+                <label class="news_activiting" id="news_2026021718:15_20260217-2_activiting">· 活动已开始</label>
+            </div>
+            <hr>
+            <div id="news_2026021715:42_20260217-1">
+                <h2>发布了Minecraft 乄 咖咯德苏林黑乐谱Midi社区</h2>
+                <h3>2026年2月17日 15:42发布</h3>
+                <button onclick="CDEMC()">进入CDEMC</button>
+                <br>
+                <label class="news_id" onclick="copyNewsId('2026021715:42_20260201-2')">动态号：2026021715:42_20260201-2</label>
+            </div>
+            <hr>
+            <div id="news_2026021621:58_20260216-1">
+                <h2>2026新年音乐会节目单</h2>
+                <h3>2026年2月16日 21:58发布</h3>
+                <button onclick="window.location.href = 'news20260216-1.html'">2026年2月16日 22:00 - 转自CBMS：2026新年音乐会节目单</button>
+                <br>
+                <label>2026年2月16日 22:00，CBMS发布了2026年2月16日的新年音乐会节目单。</label>
+                <br>
+                <label id="news_2026021621:58_20260201-1_activiting" class="news_activiting">· 活动已开始</label>
+                <br>
+                <label class="news_id" onclick="copyNewsId('2026021621:58_20260201-1')">动态号：2026021621:58_20260201-1</label>
+            </div>
         </div>
+        <br>
+        <button onclick="reportNews()">使用邮箱举报动态</button>
+        <label>如果您想使用微信举报动态，请扫描我的微信二维码。</label>
+        <br>
+        <button onclick="CDEMC()">进入CDEMC（Minecraft 乄 咖咯德苏林黑乐谱Midi社区）</button>
     </div>
     <div class="footer">
         <label onclick="openGithub()" style="cursor: pointer;">Minecraft 乄 咖咯德苏林</label>
@@ -241,7 +253,8 @@
         <label onclick="txtpro()" style="cursor: pointer;">TXTPro</label>
         <label> | </label>
         <label onclick="xos()" style="cursor: pointer;">XOS</label>
-        <label> | 新功能欢迎投稿 | BUG欢迎联系</label>
+        <label> | 新功能欢迎投稿 | BUG欢迎联系 | </label>
+        <label onclick="CDEMC()" style="cursor: pointer;">CDEMC</label>
     </div>
 </body>
 </html>

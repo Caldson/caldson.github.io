@@ -1,0 +1,26 @@
+#sidebar {
+    position: fixed;
+    top: 150px;
+    left: 20px;
+    background-color: #ccff8a;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 200px;
+    height: 900px;
+    color: #008c31;
+}
+#sidebar button {
+    background-color: #99ff00;
+    border-radius: 5px;
+    color: #008c31;
+    border-color: #ccff8a;
+    border-width: 0px;
+    border-style: solid;
+    font-size: 20px;
+    width: 180px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 10px;
+}
