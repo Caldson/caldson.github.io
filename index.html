@@ -105,6 +105,10 @@
             window.open("https://github.com/Caldson/XOS", "_blank");
             console.log("成功打开Github/XOS");
         }
+        function blog() {
+            window.open("https://caldson.github.io/caldsonblog/index.html", "_blank");
+            console.log("成功打开博客");
+        }
         function sendEmail() {
             email = prompt("请输入您的邮箱：");
             if (email) {
@@ -246,6 +250,7 @@
         <label>如果您想使用微信举报动态，请扫描我的微信二维码。</label>
         <br>
         <button onclick="CDEMC()">进入CDEMC（Minecraft 乄 咖咯德苏林黑乐谱Midi社区）</button>
+        <button onclick="blog()">进入博客</button>
     </div>
     <div class="footer">
         <label onclick="openGithub()" style="cursor: pointer;">Minecraft 乄 咖咯德苏林</label>
